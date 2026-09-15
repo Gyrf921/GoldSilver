@@ -12,6 +12,7 @@ class CalculationService(ABC):
         self.start_silver = 0
         self.count_gold = 0
         self.count_silver = 0
+        self.last_price = 0
 
     def start_buy(self, row):
         print(row)
@@ -34,6 +35,7 @@ class CalculationService(ABC):
         pass
 
     def print_result(self, row):
+        print("Последняя цена покупки: ", self.last_price)
         print("Золото на начало:", self.start_gold)
         print("Золото:", self.count_gold)
         print("Серебро на начало:", self.start_silver)

@@ -24,7 +24,6 @@ class CalculatorV2_2(CalculationService):
 
     def buy(self, row):
         flag = self.check_zscore(row["Z-score"])
-
         if flag == self.HOLD:
             return
 
@@ -55,11 +54,12 @@ class CalculatorV2_2(CalculationService):
 
     def buy_row(self, row, k_sell, operator):
         if operator in (self.BUY_SILVER_50, self.BUY_SILVER_100):
-            silver_to_sell = self.count_silver * k_sell
-            money = silver_to_sell * row["Цена С"]
+            gold_to_sell = self.count_gold * k_sell
+            money = gold_to_sell * row["Цена З"]
 
-            self.count_silver -= silver_to_sell
-            self.count_gold += money / row["Цена З"]
+            self.count_gold -= gold_to_sell
+            self.count_silver += money / row["Цена С"]
+            self.last_price = row["Цена С"]
 
         elif operator in (self.BUY_GOLD_50, self.BUY_GOLD_100):
             silver_to_sell = self.count_silver * k_sell
@@ -67,5 +67,6 @@ class CalculatorV2_2(CalculationService):
 
             self.count_silver -= silver_to_sell
             self.count_gold += money / row["Цена З"]
+            self.last_price = row["Цена З"]
 
         self.last_operation = operator

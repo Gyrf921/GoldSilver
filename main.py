@@ -40,6 +40,4 @@ def calc_deposit_invest():
     invest.print_result()
 
 
-calc_gold_invest()
-print("_______________________")
-calc_deposit_invest()
+calc_gold_and_silver()
