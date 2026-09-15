@@ -30,16 +30,6 @@ class CalculatorV2_0(CalculationService):
                 return
             self.buy_row(row, None, self.BUY_SILVER)
 
-        elif flag == self.BACK_TO_50:
-            if self.last_operation == self.BACK_TO_50:
-                return
-
-            total_money = (self.count_gold * row["Цена З"] + self.count_silver * row["Цена С"])
-
-            self.count_gold = total_money / 2 / row["Цена З"]
-            self.count_silver = total_money / 2 / row["Цена С"]
-            self.last_operation = self.BACK_TO_50
-
 
     def buy_row(self, row, k_sell, operator):
         if operator in self.BUY_GOLD:
